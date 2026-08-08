@@ -1,0 +1,44 @@
+services:
+
+  master:
+    image: bitnami/postgresql:latest
+    container_name: master_db
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=replicationPassword
+      - POSTGRESQL_USERNAME=admin
+      - POSTGRESQL_PASSWORD=admin
+      - POSTGRESQL_DATABASE=OnlineJudgeMasterDB
+    ports:
+      - 5432:5432
+    networks:
+      - pg_network
+    volumes:
+      - master_db_data:/bitnami/postgresql
+    
+  slave:
+    image: bitnami/postgresql:latest
+    container_name: slave_db 
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=replicationPassword
+      - POSTGRESQL_MASTER_HOST=master
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - POSTGRESQL_PASSWORD=admin
+    depends_on:
+      - master
+    ports:
+      - 5431:5432
+    networks:
+      - pg_network
+    volumes:
+      - slave_db_data:/bitnami/postgresql
+
+networks:
+  pg_network:
+
+volumes:
+  master_db_data:
+  slave_db_data:
