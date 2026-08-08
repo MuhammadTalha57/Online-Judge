@@ -21,8 +21,8 @@ This project is built to practice microservices by cloning main functionalities 
 
 ### Context Diagram
 
-![Online Judge Context Diagram](images/Online%20Judge%20Context%20Diagram.png)
+![Online Judge Context Diagram](Images/Online%20Judge%20Context%20Diagram.png)
 
 ### App Diagram
 
-![Online Judge App Diagram](images/Online%20Judge%20App%20Diagram.png)
+![Online Judge App Diagram](Images/Online%20Judge%20App%20Diagram.png)
