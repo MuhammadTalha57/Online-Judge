@@ -26,3 +26,11 @@ This project is built to practice microservices by cloning main functionalities 
 ### App Diagram
 
 ![Online Judge App Diagram](Images/Online%20Judge%20App%20Diagram.png)
+
+## Environment Variables
+### Sample .env
+```env
+# DB
+REPLICATION_PASSWORD=replicationPassword
+POSTGRESQL_PASSWORD=admin
+```
