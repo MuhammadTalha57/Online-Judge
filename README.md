@@ -33,4 +33,8 @@ This project is built to practice microservices by cloning main functionalities 
 # DB
 REPLICATION_PASSWORD=replicationPassword
 POSTGRESQL_PASSWORD=admin
+
+# minio (Object Storage)
+MINIO_ROOT_USER=admin
+MINIO_ROOT_PASSWORD=admin
 ```
