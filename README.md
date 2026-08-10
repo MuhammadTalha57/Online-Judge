@@ -27,6 +27,11 @@ This project is built to practice microservices by cloning main functionalities 
 
 ![Online Judge App Diagram](Images/Online%20Judge%20App%20Diagram.png)
 
+### Component Diagram
+
+#### DB Service
+![DB Service Component Diagram](Images/DB%20Service%20Component%20Diagram.png)
+
 ## Environment Variables
 ### Sample .env
 ```env
