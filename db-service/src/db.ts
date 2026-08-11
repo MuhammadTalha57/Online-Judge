@@ -22,10 +22,10 @@ const readPool = new Pool({
 	database: "OnlineJudgeMasterDB",
 });
 
-export const write = (text: string, params: any[]) => {
-	writePool.query(text, params);
+export const queryMaster = (text: string, params: any[]) => {
+	return writePool.query(text, params);
 };
 
-export const read = (text: string, params: any[]) => {
-	readPool.query(text, params);
+export const querySlave = (text: string, params: any[]) => {
+	return readPool.query(text, params);
 };
