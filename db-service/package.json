@@ -2,7 +2,7 @@
 	"name": "db-service",
 	"version": "0.1.0",
 	"description": "A microservice to handle db read and writes.",
-	"main": "index.js",
+	"main": "dist/server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon --specifier-resolution=node --loader ts-node/esm src/index.ts",
