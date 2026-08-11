@@ -9,7 +9,11 @@
 		"build": "tsc",
 		"start": "node dist/server.js",
 		"lint": "biome check .",
-		"lint:fix": "biome check . --write"
+		"lint:fix": "biome check . --write",
+		"migrate:create": "node-pg-migrate -j ts -m src/migrations create",
+		"migrate:up": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations up",
+		"migrate:down": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations down",
+		"migrate:prod": "node-pg-migrate -m dist/migrations up"
 	},
 	"keywords": [],
 	"author": "Muhammad Talha",
