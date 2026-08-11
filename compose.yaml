@@ -10,6 +10,7 @@ services:
       - POSTGRESQL_USERNAME=${POSTGRESQL_WRITE_USER}
       - POSTGRESQL_PASSWORD=${POSTGRESQL_WRITE_USER_PASSWORD}
       - POSTGRESQL_DATABASE=OnlineJudgeMasterDB
+      - DATABASE_URL=
     ports:
       - 5432:5432
     networks:
@@ -38,7 +39,7 @@ services:
     
   minio:
     image: minio/minio:latest
-    container_name: minio_storag
+    container_name: minio_storage
     command: server /data --console-address ":9001"
     environment:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
@@ -48,6 +49,25 @@ services:
       - 9001:9001
     volumes:
       - minio_data:/data
+    
+  db-service:
+    build: ./db-service
+    container_name: db-service
+    environment:
+      - DB_WRITE_HOST=${DB_WRITE_HOST}
+      - DB_READ_HOST=${DB_READ_HOST}
+      - POSTGRESQL_WRITE_USER=${POSTGRESQL_WRITE_USER}
+      - POSTGRESQL_READ_USER=${POSTGRESQL_READ_USER}
+      - POSTGRESQL_WRITE_USER_PASSWORD=${POSTGRESQL_WRITE_USER_PASSWORD}
+      - POSTGRESQL_READ_USER_PASSWORD=${POSTGRESQL_READ_USER_PASSWORD}
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - 4000:4000
+    depends_on:
+      - master
+      - slave
+    networks:
+      - pg_network
 
 networks:
   pg_network:

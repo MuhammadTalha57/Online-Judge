@@ -6,15 +6,14 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon --specifier-resolution=node --loader ts-node/esm src/index.ts",
-		"build": "tsc",
+		"build": "tsc && tsc -p tsconfig.migrations.json",
 		"start": "node dist/server.js",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write",
 		"migrate:create": "node-pg-migrate -j ts -m src/migrations create",
-		"migrate:up": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations up",
-		"migrate:down": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations down",
-		"migrate:prod": "node-pg-migrate -m dist/migrations up",
-		"db:seed": "node ts-node src/seed.ts",
+		"migrate:up": "node-pg-migrate -m dist/migrations up",
+		"migrate:down": "node-pg-migrate -m dist/migrations down",
+		"db:seed": "node dist/seed.js",
 		"db:setup": "npm run migrate:up && npm run db:seed"
 	},
 	"keywords": [],
@@ -25,17 +24,16 @@
 		"bcryptjs": "^3.0.3",
 		"dotenv": "^17.4.2",
 		"express": "^5.2.1",
+		"node-pg-migrate": "^9.0.0",
 		"pg": "^8.23.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.7",
-		"@biomejs/monorepo": "github:biomejs/biome",
 		"@types/bcryptjs": "^2.4.6",
 		"@types/express": "^5.0.6",
 		"@types/node": "^26.2.0",
 		"@types/node-pg-migrate": "^2.3.1",
 		"@types/pg": "^8.21.0",
-		"node-pg-migrate": "^9.0.0",
 		"nodemon": "^3.1.14",
 		"ts-node": "^10.9.2",
 		"typescript": "^7.0.2"
