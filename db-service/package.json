@@ -1,31 +1,35 @@
 {
-  "name": "db-service",
-  "version": "0.1.0",
-  "description": "A microservice to handle db read and writes.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --specifier-resolution=node --loader ts-node/esm src/index.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
-  },
-  "keywords": [],
-  "author": "Muhammad Talha",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "pg": "^8.23.0"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.2.0",
-    "@types/node-pg-migrate": "^2.3.1",
-    "@types/pg": "^8.21.0",
-    "node-pg-migrate": "^9.0.0",
-    "nodemon": "^3.1.14",
-    "ts-node": "^10.9.2",
-    "typescript": "^7.0.2"
-  }
+	"name": "db-service",
+	"version": "0.1.0",
+	"description": "A microservice to handle db read and writes.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon --specifier-resolution=node --loader ts-node/esm src/index.ts",
+		"build": "tsc",
+		"start": "node dist/server.js",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --write"
+	},
+	"keywords": [],
+	"author": "Muhammad Talha",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"dotenv": "^17.4.2",
+		"express": "^5.2.1",
+		"pg": "^8.23.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.7",
+		"@biomejs/monorepo": "github:biomejs/biome",
+		"@types/express": "^5.0.6",
+		"@types/node": "^26.2.0",
+		"@types/node-pg-migrate": "^2.3.1",
+		"@types/pg": "^8.21.0",
+		"node-pg-migrate": "^9.0.0",
+		"nodemon": "^3.1.14",
+		"ts-node": "^10.9.2",
+		"typescript": "^7.0.2"
+	}
 }
