@@ -6,23 +6,22 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 	pgm.createTable("ContestsRegisteredUsers", {
 		contest_id: {
 			type: "integer",
-			references: "Contests(contest_id)",
+			references: `"Contests"(contest_id)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},
 		user_id: {
 			type: "uuid",
-			references: "Users(user_id)",
+			references: `"Users"(user_id)`,
 			onDelete: "CASCADE",
 			notNull: true,
 		},
 		rank: {
-			type: "integer", // Deliberate duplication of rank to store final rank
-			default: "null",
+			type: "integer" // Deliberate duplication of rank to store final rank
 		},
 	});
 
-	pgm.addConstraint("ContestsRegisteredUsers", "contest_id_user_id_pk", {
+	pgm.addConstraint("ContestsRegisteredUsers", "contest_registered_users_pk", {
 		primaryKey: ["contest_id", "user_id"],
 	});
 }

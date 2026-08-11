@@ -6,13 +6,13 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 	pgm.createTable("ContestsLeaderboard", {
 		contest_id: {
 			type: "integer",
-			references: "Contests(contest_id)",
+			references: `"Contests"(contest_id)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},
 		user_id: {
 			type: "uuid",
-			references: "Users(user_id)",
+			references: `"Users"(user_id)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},

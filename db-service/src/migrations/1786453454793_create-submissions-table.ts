@@ -7,13 +7,13 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 		submission_id: "id",
 		problem_id: {
 			type: "integer",
-			references: "Problems(problem_id)",
+			references: `"Problems"(problem_id)`,
 			notNull: true,
 			onDelete: "RESTRICT",
 		},
 		user_id: {
 			type: "uuid",
-			references: "Users(user_id)",
+			references: `"Users"(user_id)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},

@@ -6,7 +6,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 	pgm.createTable("ContestsProblems", {
 		contest_id: {
 			type: "integer",
-			references: "Contests(contest_id)",
+			references: `"Contests"(contest_id)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},
@@ -16,7 +16,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 		},
 		problem_id: {
 			type: "integer",
-			references: "Problems(problem_id)",
+			references: `"Problems"(problem_id)`,
 			notNull: true,
 		},
 	});
