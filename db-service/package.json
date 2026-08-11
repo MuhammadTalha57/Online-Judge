@@ -13,13 +13,16 @@
 		"migrate:create": "node-pg-migrate -j ts -m src/migrations create",
 		"migrate:up": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations up",
 		"migrate:down": "node --loader ts-node/esm ./node_modules/node-pg-migrate/bin/node-pg-migrate -m src/migrations down",
-		"migrate:prod": "node-pg-migrate -m dist/migrations up"
+		"migrate:prod": "node-pg-migrate -m dist/migrations up",
+		"db:seed": "node ts-node src/seed.ts",
+		"db:setup": "npm run migrate:up && npm run db:seed"
 	},
 	"keywords": [],
 	"author": "Muhammad Talha",
 	"license": "ISC",
 	"type": "module",
 	"dependencies": {
+		"bcryptjs": "^3.0.3",
 		"dotenv": "^17.4.2",
 		"express": "^5.2.1",
 		"pg": "^8.23.0"
@@ -27,6 +30,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.5.7",
 		"@biomejs/monorepo": "github:biomejs/biome",
+		"@types/bcryptjs": "^2.4.6",
 		"@types/express": "^5.0.6",
 		"@types/node": "^26.2.0",
 		"@types/node-pg-migrate": "^2.3.1",
