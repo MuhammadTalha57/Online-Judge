@@ -32,6 +32,9 @@ This project is built to practice microservices by cloning main functionalities 
 #### DB Service
 ![DB Service Component Diagram](Images/DB%20Service%20Component%20Diagram.png)
 
+## ERD
+![Online Judge ERD](Images/OnlineJudgeERD.png)
+
 ## Environment Variables
 ### Sample .env
 ```env
