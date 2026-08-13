@@ -3,9 +3,11 @@ import express from "express";
 import { queryMaster, querySlave } from "./db.js";
 
 const app = express();
+app.use(express.json());
 
-app.get("/read", async (req, res, next) => {
+app.post("/read", async (req, res, next) => {
 	const { query, values } = req.body;
+	console.log(`GOT /read: ${req.body}`);
 
 	try {
 		const result = await querySlave(query, values);

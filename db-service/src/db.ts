@@ -16,10 +16,11 @@ const writePool = new Pool({
 // Read Pool
 const readPool = new Pool({
 	host: process.env.DB_READ_HOST,
-	port: 5431,
+	port: 5432,
 	user: process.env.POSTGRESQL_READ_USER,
 	password: process.env.POSTGRESQL_READ_USER_PASSWORD,
 	database: "OnlineJudgeMasterDB",
+	
 });
 
 export const queryMaster = (text: string, params: any[]) => {
