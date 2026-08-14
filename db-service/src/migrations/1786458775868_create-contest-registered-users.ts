@@ -10,9 +10,9 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 			notNull: true,
 			onDelete: "CASCADE",
 		},
-		user_id: {
-			type: "uuid",
-			references: `"Users"(user_id)`,
+		username: {
+			type: "varchar(255)",
+			references: `"Users"(username)`,
 			onDelete: "CASCADE",
 			notNull: true,
 		},
@@ -22,7 +22,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 	});
 
 	pgm.addConstraint("ContestsRegisteredUsers", "contest_registered_users_pk", {
-		primaryKey: ["contest_id", "user_id"],
+		primaryKey: ["contest_id", "username"],
 	});
 }
 

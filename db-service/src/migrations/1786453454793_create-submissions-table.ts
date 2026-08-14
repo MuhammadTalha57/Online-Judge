@@ -11,9 +11,9 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 			notNull: true,
 			onDelete: "RESTRICT",
 		},
-		user_id: {
-			type: "uuid",
-			references: `"Users"(user_id)`,
+		username: {
+			type: "varchar(255)",
+			references: `"Users"(username)`,
 			notNull: true,
 			onDelete: "CASCADE",
 		},

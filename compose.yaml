@@ -10,7 +10,6 @@ services:
       - POSTGRESQL_USERNAME=${POSTGRESQL_WRITE_USER}
       - POSTGRESQL_PASSWORD=${POSTGRESQL_WRITE_USER_PASSWORD}
       - POSTGRESQL_DATABASE=OnlineJudgeMasterDB
-      - DATABASE_URL=
     ports:
       - 5432:5432
     networks:

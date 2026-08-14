@@ -4,14 +4,9 @@ export const shorthands: ColumnDefinitions | undefined = undefined;
 
 export async function up(pgm: MigrationBuilder): Promise<void> {
 	pgm.createTable("Users", {
-		user_id: {
-			type: "uuid",
-			primaryKey: true,
-			default: pgm.func("gen_random_uuid()"),
-		},
 		username: {
 			type: "varchar(255)",
-			notNull: true,
+			primaryKey: true,
 		},
 		password_hash: {
 			type: "varchar(255)",
