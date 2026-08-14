@@ -53,8 +53,8 @@ export async function signinController(
 						return res.status(500).send("Could not save session");
 					}
 				})
+				return res.status(200).json({ success, message, user });
 			})
-			return res.status(200).json({ success, message, user });
 
 		} else {
 			res.status(401).json({ success, error, user });
