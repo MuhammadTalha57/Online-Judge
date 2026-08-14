@@ -16,9 +16,16 @@ export function requireRoles(allowedRoles: string[]) {
         }
 
         if(!allowedRoles.includes(user.role)) {
-            return res.status(402).send("Forbidden");
+            return res.status(403).send("Forbidden");
         }
 
         next();
     }
+}
+
+export function requireNoSession(req: Request, res: Response, next: NextFunction) {
+    if(req.session && req.session.user) {
+       return res.status(403).send("Forbidden: User already logged in") 
+    }
+    next();
 }

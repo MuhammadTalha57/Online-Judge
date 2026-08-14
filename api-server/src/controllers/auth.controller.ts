@@ -40,7 +40,7 @@ export async function signinController(
 			// Generate Session
 			req.session.regenerate((err) => {
 				if(err) {
-					return res.status(500).send("Could not generate session");
+					next(err);
 				}
 
 				req.session.user = {
@@ -62,4 +62,26 @@ export async function signinController(
 	} catch (error) {
 		next(error);
 	}
+}
+
+export async function signoutController(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) {
+
+	res.clearCookie("connect.sid");
+	try {
+		req.session.destroy((err) => {
+			if(err) {
+				next(err);
+			}
+			
+			return res.status(200).json({success:true, message: "Successfully logged out"});
+		})
+	} catch(error) {
+		console.error(error);
+		return res.status(500).json({success: false, error: "Could not end session"})
+	}
+
 }
