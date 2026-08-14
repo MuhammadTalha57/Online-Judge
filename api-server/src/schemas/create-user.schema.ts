@@ -1,6 +1,6 @@
 import type { Schema } from "express-validator";
 
-const createUserSchema: Schema = {
+export const createUserSchema: Schema = {
 	username: {
 		in: ["body"],
 		trim: true,
@@ -13,4 +13,4 @@ const createUserSchema: Schema = {
 	},
 };
 
-export default createUserSchema;
+export const loginUserSchema = createUserSchema;

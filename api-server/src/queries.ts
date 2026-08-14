@@ -1,4 +1,5 @@
 import type { QueryResult, QueryResultRow } from "pg";
+import type { User } from "./types/user.js";
 
 async function queryDB<T extends QueryResultRow = any>(
 	query: string,
@@ -65,4 +66,25 @@ export async function createUser(
 		"POST",
 	);
 	return result.rows[0]!.username === username;
+}
+
+export async function getUser(
+	username: string = "%",
+	role: string = "%",
+): Promise<User | null> {
+	const query = `SELECT * FROM "Users" WHERE username LIKE $1 AND role LIKE $2`;
+	const values = [username, role];
+
+	const result = await queryDB<{
+		username: string;
+		password_hash: string;
+		role: string;
+	}>(query, values, "read", "POST");
+
+	if (result.rowCount === 0) {
+		return null;
+	}
+	return {
+		...result.rows[0]!,
+	};
 }

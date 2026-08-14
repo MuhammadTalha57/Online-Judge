@@ -1,8 +1,14 @@
 import { type Request, type Response, Router } from "express";
 import { checkSchema, matchedData } from "express-validator";
-import { signupController } from "../controllers/auth.controller.js";
+import {
+	signinController,
+	signupController,
+} from "../controllers/auth.controller.js";
 import { handleValidationErrors } from "../middlewares/schema-validator.middleware.js";
-import createUserSchema from "../schemas/create-user.schema.js";
+import {
+	createUserSchema,
+	loginUserSchema,
+} from "../schemas/create-user.schema.js";
 
 const authRouter = Router();
 
@@ -11,6 +17,13 @@ authRouter.post(
 	checkSchema(createUserSchema),
 	handleValidationErrors,
 	signupController,
+);
+
+authRouter.post(
+	"/signin",
+	checkSchema(loginUserSchema),
+	handleValidationErrors,
+	signinController,
 );
 
 export default authRouter;
