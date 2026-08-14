@@ -43,8 +43,10 @@ export async function signinController(
 					return res.status(500).send("Could not generate session");
 				}
 
-				req.session.username = user!.username;
-				req.session.role = user!.role;
+				req.session.user = {
+					username: user!.username,
+					role: user!.role,
+				}	
 
 				req.session.save((err) => {
 					if(err) {
