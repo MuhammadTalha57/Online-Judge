@@ -48,7 +48,7 @@ export async function userExistsWithUsername(
 		"read",
 		"POST",
 	);
-	return parseInt(result.rows[0]!.count, 10) > 0;
+	return parseInt(result.rows[0]?.count ?? "0", 10) > 0;
 }
 
 export async function createUser(
@@ -65,7 +65,7 @@ export async function createUser(
 		"create",
 		"POST",
 	);
-	return result.rows[0]!.username === username;
+	return result.rows[0]?.username === username;
 }
 
 export async function getUser(
@@ -85,6 +85,6 @@ export async function getUser(
 		return null;
 	}
 	return {
-		...result.rows[0]!,
+		...(result.rows[0] as User),
 	};
 }

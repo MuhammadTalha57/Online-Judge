@@ -14,11 +14,11 @@ export type User = {
 	role: string;
 };
 
-declare module 'express-session' {
-    interface SessionData {
-       user: {
-		username: string,
-		role: string,
-	   } 
-    }
+declare module "express-session" {
+	interface SessionData {
+		user: {
+			username: string;
+			role: string;
+		};
+	}
 }

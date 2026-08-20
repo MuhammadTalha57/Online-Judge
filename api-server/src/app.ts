@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 const redisClient = createClient({
-	url: process.env.REDIS_URL!,
+	url: process.env.REDIS_URL ?? "REDIS URL NOT SET",
 });
 
 redisClient.on("error", (err) =>
@@ -25,7 +25,7 @@ app.use(
 			client: redisClient,
 			prefix: "OnlineJudge:",
 		}),
-		secret: process.env.SESSION_SECRET!,
+		secret: process.env.SESSION_SECRET ?? "WEAK SECRET",
 		resave: false,
 		saveUninitialized: false,
 		cookie: {
@@ -33,14 +33,13 @@ app.use(
 			httpOnly: true,
 			maxAge: 1000 * 60 * 60 * 24, // 1 day
 		},
-		
 	}),
 );
 
 // Auth route
 app.use("/auth", authRouter);
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 	const status = err.status ?? 500;
 	res.status(status).json(err);
 });

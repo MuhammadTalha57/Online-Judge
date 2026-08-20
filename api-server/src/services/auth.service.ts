@@ -9,7 +9,6 @@ export async function registerUser(
 	success: boolean;
 	error?: string;
 	message?: string;
-	data?: Object;
 }> {
 	if (await userExistsWithUsername(username)) {
 		// User already exists
@@ -21,7 +20,7 @@ export async function registerUser(
 
 	const passwordHash = await bcrypt.hash(
 		password,
-		parseInt(process.env.SALT ?? "10"),
+		parseInt(process.env.SALT ?? "10", 10),
 	);
 	const userCreated = await createUser(username, passwordHash);
 

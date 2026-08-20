@@ -1,16 +1,19 @@
-import { type Request, type Response, Router } from "express";
-import { checkSchema, matchedData } from "express-validator";
+import { Router } from "express";
+import { checkSchema } from "express-validator";
 import {
 	signinController,
 	signoutController,
 	signupController,
 } from "../controllers/auth.controller.js";
+import {
+	requireAuth,
+	requireNoSession,
+} from "../middlewares/authenticate.middleware.js";
 import { handleValidationErrors } from "../middlewares/schema-validator.middleware.js";
 import {
 	createUserSchema,
 	loginUserSchema,
 } from "../schemas/create-user.schema.js";
-import { requireAuth, requireNoSession } from "../middlewares/authenticate.middleware.js";
 
 const authRouter = Router();
 
@@ -29,10 +32,6 @@ authRouter.post(
 	signinController,
 );
 
-authRouter.post(
-	"/signout",
-	requireAuth,
-	signoutController,
-)
+authRouter.post("/signout", requireAuth, signoutController);
 
 export default authRouter;

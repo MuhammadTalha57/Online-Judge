@@ -39,23 +39,22 @@ export async function signinController(
 		if (success) {
 			// Generate Session
 			req.session.regenerate((err) => {
-				if(err) {
+				if (err) {
 					next(err);
 				}
 
 				req.session.user = {
-					username: user!.username,
-					role: user!.role,
-				}	
+					username: user?.username ?? "User",
+					role: user?.role ?? "user",
+				};
 
 				req.session.save((err) => {
-					if(err) {
+					if (err) {
 						return res.status(500).send("Could not save session");
 					}
-				})
+				});
 				return res.status(200).json({ success, message, user });
-			})
-
+			});
 		} else {
 			res.status(401).json({ success, error, user });
 		}
@@ -69,19 +68,21 @@ export async function signoutController(
 	res: Response,
 	next: NextFunction,
 ) {
-
 	res.clearCookie("connect.sid");
 	try {
 		req.session.destroy((err) => {
-			if(err) {
+			if (err) {
 				next(err);
 			}
-			
-			return res.status(200).json({success:true, message: "Successfully logged out"});
-		})
-	} catch(error) {
-		console.error(error);
-		return res.status(500).json({success: false, error: "Could not end session"})
-	}
 
+			return res
+				.status(200)
+				.json({ success: true, message: "Successfully logged out" });
+		});
+	} catch (error) {
+		console.error(error);
+		return res
+			.status(500)
+			.json({ success: false, error: "Could not end session" });
+	}
 }
